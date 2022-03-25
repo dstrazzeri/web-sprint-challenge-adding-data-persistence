@@ -1,5 +1,6 @@
 const db = require('../../data/dbConfig');
 
+
 const getAll = async () => {
     const projects = await  db('projects')
 
@@ -22,6 +23,7 @@ const getAll = async () => {
     });
 };
 
+
 const create = newProject => {
     return  db('projects')
         .insert(newProject)
@@ -30,6 +32,7 @@ const create = newProject => {
 
         })
 };
+
 
 module.exports = {
     getAll,
