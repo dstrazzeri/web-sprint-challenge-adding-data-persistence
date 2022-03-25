@@ -3,7 +3,7 @@ const db = require('../../data/dbConfig')
 
 const getAll = async () => {
     const tasks = await db('tasks as t')
-      .join('projects as p', 't.project_id', p.project_id)
+      .join('projects as p', 't.project_id', 'p.project_id')
       .select('t.*', 'p.project_name', 'p.project_description')
     const results = []
 
