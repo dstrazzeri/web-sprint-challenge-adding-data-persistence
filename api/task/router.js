@@ -12,20 +12,13 @@ router.get('/', (req, res, next) => {
 })
 
 
-router.post('/', async (req, res, next) => {
-    try {
-        const newTask = await Tasks.create(req.body)
-        res.status(201).json({
-            task_id: newTask.task_id,
-            task_description: newTask.task_description,
-            task_notes: newTask.task_notes,
-            task_completed: newTask.task_completed !== 0,
-            project_id: newTask.project_id
+router.post('/', (req, res, next) => {
+    Tasks.create(req.body)
+        .then(newTask => {
+            res.status(201).json(newTask)
         })
-    } catch (err) {
-        next(err)
-    }
-})
+        .catch(next)
+});
 
 
 module.exports = router
